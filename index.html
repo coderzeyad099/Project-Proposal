@@ -1,0 +1,1159 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Proposal | عرض مشروع | Pêşniyara Projeyê</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #ec4899;
+            --accent: #06b6d4;
+            --bg: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-card: #1e293b;
+            --text: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --border: #334155;
+            --gradient-1: linear-gradient(135deg, #6366f1 0%, #ec4899 100%);
+            --gradient-2: linear-gradient(135deg, #06b6d4 0%, #6366f1 100%);
+            --shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            --shadow-card: 0 10px 40px rgba(99, 102, 241, 0.15);
+        }
+
+        [data-theme="light"] {
+            --bg: #ffffff;
+            --bg-secondary: #f8fafc;
+            --bg-card: #ffffff;
+            --text: #0f172a;
+            --text-secondary: #64748b;
+            --border: #e2e8f0;
+            --shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+            --shadow-card: 0 10px 40px rgba(99, 102, 241, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Cairo', 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            transition: all 0.5s ease;
+            overflow-x: hidden;
+        }
+
+        .bg-animation {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .bg-animation .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .orb-1 { width: 400px; height: 400px; background: var(--primary); top: -10%; right: -10%; animation-delay: 0s; }
+        .orb-2 { width: 300px; height: 300px; background: var(--secondary); bottom: -10%; left: -10%; animation-delay: -5s; }
+        .orb-3 { width: 250px; height: 250px; background: var(--accent); top: 50%; left: 50%; animation-delay: -10s; }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -50px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            backdrop-filter: blur(20px);
+            background: rgba(15, 23, 42, 0.8);
+            border-bottom: 1px solid var(--border);
+            transition: all 0.5s ease;
+        }
+
+        [data-theme="light"] nav { background: rgba(255, 255, 255, 0.8); }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-controls { display: flex; gap: 0.5rem; align-items: center; }
+
+        .btn-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            background: var(--bg-card);
+            color: var(--text);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .btn-icon:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-card);
+        }
+
+        .btn-icon.active { background: var(--primary); color: white; }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8rem 5% 4rem;
+            position: relative;
+        }
+
+        .hero-content { text-align: center; max-width: 900px; }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hero-badge .pulse {
+            width: 8px; height: 8px;
+            background: #22c55e;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.5); }
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        .hero h1 .gradient-text {
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            animation: fadeInUp 0.8s ease 0.4s both;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 3rem;
+            animation: fadeInUp 0.8s ease 0.6s both;
+        }
+
+        .stat-item { text-align: center; }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: var(--gradient-2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label { font-size: 0.9rem; color: var(--text-secondary); }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .showcase-section { padding: 6rem 5%; }
+
+        .section-header { text-align: center; margin-bottom: 4rem; }
+
+        .section-header h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .carousel-container {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .carousel-track { display: flex; transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
+
+        .carousel-slide {
+            min-width: 100%;
+            position: relative;
+            aspect-ratio: 16/9;
+            overflow: hidden;
+        }
+
+        .carousel-slide img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease; }
+        .carousel-slide:hover img { transform: scale(1.05); }
+
+        .carousel-overlay {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            padding: 3rem;
+            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%);
+            color: white;
+        }
+
+        .carousel-overlay h3 { font-size: 1.8rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .carousel-overlay p { opacity: 0.9; }
+
+        .carousel-nav {
+            position: absolute;
+            bottom: 2rem; right: 2rem;
+            display: flex; gap: 1rem;
+            z-index: 10;
+        }
+
+        .carousel-btn {
+            width: 50px; height: 50px;
+            border-radius: 50%;
+            border: 2px solid rgba(255,255,255,0.3);
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-btn:hover { background: var(--primary); border-color: var(--primary); transform: scale(1.1); }
+
+        .carousel-dots {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 0.5rem;
+            z-index: 10;
+        }
+
+        .dot {
+            width: 10px; height: 10px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.4);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dot.active { width: 30px; border-radius: 5px; background: white; }
+
+        .features-section { padding: 6rem 5%; }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 3px;
+            background: var(--gradient-1);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .feature-card:hover::before { transform: scaleX(1); }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-card);
+            border-color: var(--primary);
+        }
+
+        .feature-icon {
+            width: 60px; height: 60px;
+            border-radius: 16px;
+            background: var(--gradient-1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 0.8rem; }
+        .feature-card p { color: var(--text-secondary); line-height: 1.7; }
+
+        .timeline-section { padding: 6rem 5%; }
+
+        .timeline {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px; height: 100%;
+            background: var(--gradient-1);
+        }
+
+        .timeline-item {
+            display: flex;
+            justify-content: flex-end;
+            padding-right: 2rem;
+            position: relative;
+            margin-bottom: 3rem;
+        }
+
+        .timeline-item:nth-child(even) {
+            justify-content: flex-start;
+            padding-right: 0;
+            padding-left: 2rem;
+        }
+
+        .timeline-content {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            width: calc(50% - 2rem);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-content:hover { transform: scale(1.02); box-shadow: var(--shadow-card); }
+
+        .timeline-dot {
+            position: absolute;
+            width: 20px; height: 20px;
+            background: var(--primary);
+            border-radius: 50%;
+            border: 4px solid var(--bg);
+            top: 2rem;
+        }
+
+        .timeline-item .timeline-dot { left: -2.6rem; }
+        .timeline-item:nth-child(even) .timeline-dot { left: auto; right: -2.6rem; }
+
+        .timeline-date {
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            background: var(--gradient-1);
+            color: white;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+        }
+
+        .timeline-content h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .timeline-content p { color: var(--text-secondary); font-size: 0.95rem; }
+
+        .tech-section { padding: 6rem 5%; text-align: center; }
+
+        .tech-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            max-width: 1000px;
+            margin: 3rem auto 0;
+        }
+
+        .tech-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 1rem 2rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .tech-item:hover { background: var(--primary); color: white; transform: translateY(-5px); box-shadow: var(--shadow-card); }
+        .tech-item i { font-size: 1.5rem; }
+
+        .tech-explain-section { padding: 6rem 5%; }
+
+        .tech-explain-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .tech-explain-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tech-explain-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-card); border-color: var(--primary); }
+
+        .tech-explain-card .tech-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-explain-card .tech-icon {
+            width: 55px; height: 55px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: white;
+        }
+
+        .tech-explain-card .tech-title { font-size: 1.4rem; font-weight: 700; }
+        .tech-explain-card .tech-subtitle { font-size: 0.9rem; color: var(--text-secondary); }
+        .tech-explain-card p { color: var(--text-secondary); line-height: 1.8; margin-bottom: 1rem; }
+        .tech-explain-card ul { list-style: none; padding: 0; }
+        .tech-explain-card ul li { padding: 0.4rem 0; color: var(--text-secondary); display: flex; align-items: center; gap: 0.5rem; }
+        .tech-explain-card ul li::before { content: '✓'; color: var(--primary); font-weight: bold; }
+
+        .about-section { padding: 6rem 5%; }
+
+        .about-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-image { position: relative; }
+
+        .about-image-wrapper {
+            width: 300px; height: 300px;
+            border-radius: 24px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: var(--shadow);
+        }
+
+        .about-image-wrapper img { width: 100%; height: 100%; object-fit: cover; }
+
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: -20px; right: -20px;
+            width: 100%; height: 100%;
+            border: 3px solid var(--primary);
+            border-radius: 24px;
+            z-index: -1;
+        }
+
+        .experience-badge {
+            position: absolute;
+            bottom: -20px; left: -20px;
+            background: var(--gradient-1);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 16px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            box-shadow: var(--shadow);
+        }
+
+        .about-content h2 { font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem; }
+        .about-content .role { font-size: 1.2rem; color: var(--primary); font-weight: 600; margin-bottom: 1.5rem; }
+        .about-content p { color: var(--text-secondary); line-height: 1.8; margin-bottom: 2rem; }
+
+        .skills-list { display: flex; flex-wrap: wrap; gap: 0.8rem; }
+
+        .skill-tag {
+            padding: 0.5rem 1.2rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover { background: var(--primary); color: white; transform: translateY(-2px); }
+
+        .cta-section { padding: 6rem 5%; text-align: center; }
+
+        .cta-box {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--gradient-1);
+            border-radius: 24px;
+            padding: 4rem;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-box::before {
+            content: '';
+            position: absolute;
+            top: -50%; right: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+        .cta-box h2 { font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem; position: relative; }
+        .cta-box p { opacity: 0.9; margin-bottom: 2rem; position: relative; }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            position: relative;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary { background: white; color: var(--primary-dark); }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+
+        .btn-secondary { background: transparent; color: white; border: 2px solid rgba(255,255,255,0.3); }
+        .btn-secondary:hover { background: rgba(255,255,255,0.1); border-color: white; }
+
+        footer {
+            padding: 3rem 5%;
+            text-align: center;
+            border-top: 1px solid var(--border);
+            color: var(--text-secondary);
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .social-links { display: flex; justify-content: center; gap: 1rem; margin: 1.5rem 0; }
+
+        .social-links a {
+            width: 45px; height: 45px;
+            border-radius: 50%;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover { background: var(--primary); color: white; transform: translateY(-3px); }
+
+        @media (max-width: 768px) {
+            .hero-stats { flex-direction: column; gap: 1.5rem; }
+            .about-container { grid-template-columns: 1fr; text-align: center; }
+            .about-image { justify-self: center; }
+            .timeline::before { left: 1rem; }
+            .timeline-item, .timeline-item:nth-child(even) { justify-content: flex-start; padding-left: 3rem; padding-right: 0; }
+            .timeline-content { width: 100%; }
+            .timeline-item .timeline-dot, .timeline-item:nth-child(even) .timeline-dot { left: 0.4rem; right: auto; }
+            .cta-buttons { flex-direction: column; }
+            .tech-explain-grid { grid-template-columns: 1fr; }
+            .nav-controls { gap: 0.3rem; }
+            .btn-icon { width: 38px; height: 38px; font-size: 0.75rem; }
+        }
+
+        .reveal { opacity: 0; transform: translateY(50px); transition: all 0.8s ease; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+    </style>
+<base target="_blank">
+</head>
+<body>
+    <!-- Background Animation -->
+    <div class="bg-animation">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo" data-ar="مشروعي" data-en="MyProject" data-ku="Projeya Min">مشروعي</div>
+        <div class="nav-controls">
+            <button class="btn-icon lang-btn" onclick="setLanguage('ar')" id="langAr">AR</button>
+            <button class="btn-icon lang-btn" onclick="setLanguage('en')" id="langEn">EN</button>
+            <button class="btn-icon lang-btn" onclick="setLanguage('ku')" id="langKu">KU</button>
+            <button class="btn-icon" onclick="toggleTheme()" id="themeBtn">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="pulse"></span>
+                <span data-ar="متاح للعمل" data-en="Available for Work" data-ku="Ji bo Kar Amade">متاح للعمل</span>
+            </div>
+            <h1>
+                <span data-ar="نحول أفكارك إلى" data-en="We Turn Your Ideas Into" data-ku="Em Ramanên Te Dikin">نحول أفكارك إلى</span>
+                <span class="gradient-text" data-ar="واقع رقمي" data-en="Digital Reality" data-ku="Rastiya Dîjîtal">واقع رقمي</span>
+            </h1>
+            <p class="hero-subtitle" data-ar="حلول ويب متكاملة بتصميم عصري وأداء عالي" data-en="Complete web solutions with modern design and high performance" data-ku="Çareseriyên Web-a Têkûz bi Dizayna Nûjen û Performansa Bilind">
+                حلول ويب متكاملة بتصميم عصري وأداء عالي
+            </p>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-number">6+</div>
+                    <div class="stat-label" data-ar="سنوات خبرة" data-en="Years Experience" data-ku="Salane Tecrube">سنوات خبرة</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label" data-ar="مشروع منجز" data-en="Projects Done" data-ku="Projeyên Qedandî">مشروع منجز</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label" data-ar="رضا العملاء" data-en="Client Satisfaction" data-ku="Kêfxweşiya Mişteriyan">رضا العملاء</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Image Showcase Carousel -->
+    <section class="showcase-section">
+        <div class="section-header reveal">
+            <h2 data-ar="معرض الأعمال" data-en="Project Showcase" data-ku="Pêşangeha Karan">معرض الأعمال</h2>
+            <p data-ar="نماذج من مشاريعنا السابقة" data-en="Samples from our previous projects" data-ku="Nimûneyên ji projeyên me yên berê">نماذج من مشاريعنا السابقة</p>
+        </div>
+        <div class="carousel-container reveal">
+            <div class="carousel-track" id="carouselTrack">
+                <div class="carousel-slide">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&h=675&fit=crop" alt="Dashboard">
+                    <div class="carousel-overlay">
+                        <h3 data-ar="لوحة تحكم ذكية" data-en="Smart Dashboard" data-ku="Tabloya Kontrolê ya Zîrek">لوحة تحكم ذكية</h3>
+                        <p data-ar="تحليلات بيانات متقدمة" data-en="Advanced Data Analytics" data-ku="Analîza Daneyên Pêşkeftî">تحليلات بيانات متقدمة</p>
+                    </div>
+                </div>
+                <div class="carousel-slide">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=675&fit=crop" alt="Analytics">
+                    <div class="carousel-overlay">
+                        <h3 data-ar="تطبيق تحليلات" data-en="Analytics App" data-ku="Sepana Analîzê">تطبيق تحليلات</h3>
+                        <p data-ar="رسوم بيانية تفاعلية" data-en="Interactive Charts" data-ku="Dîagramên Têkilîdar">رسوم بيانية تفاعلية</p>
+                    </div>
+                </div>
+                <div class="carousel-slide">
+                    <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1200&h=675&fit=crop" alt="E-commerce">
+                    <div class="carousel-overlay">
+                        <h3 data-ar="متجر إلكتروني" data-en="E-Commerce Store" data-ku="Dikanê Elektronîk">متجر إلكتروني</h3>
+                        <p data-ar="تجربة تسوق سلسة" data-en="Seamless Shopping" data-ku="Tecrubeya Kirînê ya Bêqisûr">تجربة تسوق سلسة</p>
+                    </div>
+                </div>
+                <div class="carousel-slide">
+                    <img src="https://images.unsplash.com/photo-1559028012-481c04fa702d?w=1200&h=675&fit=crop" alt="Mobile App">
+                    <div class="carousel-overlay">
+                        <h3 data-ar="تطبيق جوال" data-en="Mobile Application" data-ku="Sepana Mobîl">تطبيق جوال</h3>
+                        <p data-ar="تصميم متجاوب كامل" data-en="Fully Responsive" data-ku="Dizayna Bi Tevahî Vegerbar">تصميم متجاوب كامل</p>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-nav">
+                <button class="carousel-btn" onclick="prevSlide()">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+                <button class="carousel-btn" onclick="nextSlide()">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+            </div>
+            <div class="carousel-dots" id="carouselDots"></div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="section-header reveal">
+            <h2 data-ar="مميزات المشروع" data-en="Project Features" data-ku="Taybetmendiyên Projeyê">مميزات المشروع</h2>
+            <p data-ar="كل ما تحتاجه في مكان واحد" data-en="Everything you need in one place" data-ku="Her tiştê ku te hewce dike di cîhekî de">كل ما تحتاجه في مكان واحد</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card reveal">
+                <div class="feature-icon"><i class="fas fa-bolt"></i></div>
+                <h3 data-ar="أداء عالي" data-en="High Performance" data-ku="Performansa Bilind">أداء عالي</h3>
+                <p data-ar="تحميل سريع واستجابة فورية لجميع التفاعلات" data-en="Fast loading and instant response to all interactions" data-ku="Barkirinên lezgîn û bersiva bilez ji bo hemû têkiliyan">تحميل سريع واستجابة فورية لجميع التفاعلات</p>
+            </div>
+            <div class="feature-card reveal">
+                <div class="feature-icon"><i class="fas fa-mobile-alt"></i></div>
+                <h3 data-ar="تصميم متجاوب" data-en="Responsive Design" data-ku="Dizayna Vegerbar">تصميم متجاوب</h3>
+                <p data-ar="يعمل بشكل مثالي على جميع الأجهزة والشاشات" data-en="Works perfectly on all devices and screens" data-ku="Bi awayekî bêkêmasî li ser hemû cîhaz û dîmenderan dixebite">يعمل بشكل مثالي على جميع الأجهزة والشاشات</p>
+            </div>
+            <div class="feature-card reveal">
+                <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
+                <h3 data-ar="حماية متقدمة" data-en="Advanced Security" data-ku="Ewlekariya Pêşkeftî">حماية متقدمة</h3>
+                <p data-ar="تشفير البيانات وحماية كاملة ضد الهجمات" data-en="Data encryption and full protection against attacks" data-ku="Şîfrekirina daneyan û parastina tevahî li dijî êrîşan">تشفير البيانات وحماية كاملة ضد الهجمات</p>
+            </div>
+            <div class="feature-card reveal">
+                <div class="feature-icon"><i class="fas fa-search"></i></div>
+                <h3 data-ar="SEO محسّن" data-en="SEO Optimized" data-ku="SEO-ya Optîmîzkirî">SEO محسّن</h3>
+                <p data-ar="تهيئة كاملة لمحركات البحث لزيادة الظهور" data-en="Full optimization for search engines to increase visibility" data-ku="Optîmîzasyona tevahî ji bo motorên lêgerînê ji bo zêdekirina xuyabûnê">تهيئة كاملة لمحركات البحث لزيادة الظهور</p>
+            </div>
+            <div class="feature-card reveal">
+                <div class="feature-icon"><i class="fas fa-paint-brush"></i></div>
+                <h3 data-ar="تصميم عصري" data-en="Modern Design" data-ku="Dizayna Nûjen">تصميم عصري</h3>
+                <p data-ar="واجهة مستخدم أنيقة مع تجربة استخدام سلسة" data-en="Elegant UI with smooth user experience" data-ku="UI-ya bi şêwaz bi tecrubeya bikarhêner a aram">واجهة مستخدم أنيقة مع تجربة استخدام سلسة</p>
+            </div>
+            <div class="feature-card reveal">
+                <div class="feature-icon"><i class="fas fa-headset"></i></div>
+                <h3 data-ar="دعم فني" data-en="Technical Support" data-ku="Alîkariya Teknîkî">دعم فني</h3>
+                <p data-ar="دعم مستمر وصيانة دورية بعد الإطلاق" data-en="Continuous support and periodic maintenance after launch" data-ku="Piştgirîya domdar û xwarina demsalî piştî weşandinê">دعم مستمر وصيانة دورية بعد الإطلاق</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section class="timeline-section">
+        <div class="section-header reveal">
+            <h2 data-ar="خطة العمل" data-en="Work Plan" data-ku="Plana Kar">خطة العمل</h2>
+            <p data-ar="مراحل تنفيذ المشروع خطوة بخطوة" data-en="Project implementation stages step by step" data-ku="Qonaxên sepandina projeyê gav bi gav">مراحل تنفيذ المشروع خطوة بخطوة</p>
+        </div>
+        <div class="timeline">
+            <div class="timeline-item reveal">
+                <div class="timeline-content">
+                    <span class="timeline-date" data-ar="الأسبوع 1" data-en="Week 1" data-ku="Hefteya 1">الأسبوع 1</span>
+                    <h3 data-ar="التحليل والتخطيط" data-en="Analysis & Planning" data-ku="Analîz & Plan">التحليل والتخطيط</h3>
+                    <p data-ar="دراسة المتطلبات، تحليل المنافسين، ووضع خطة العمل" data-en="Studying requirements, competitor analysis, and setting the work plan" data-ku="Lêkolîna hewcedariyan, analîza reqalê, û danîna plana kar">دراسة المتطلبات، تحليل المنافسين، ووضع خطة العمل</p>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+            <div class="timeline-item reveal">
+                <div class="timeline-content">
+                    <span class="timeline-date" data-ar="الأسبوع 2-3" data-en="Week 2-3" data-ku="Hefteya 2-3">الأسبوع 2-3</span>
+                    <h3 data-ar="التصميم UI/UX" data-en="UI/UX Design" data-ku="Dizayna UI/UX">التصميم UI/UX</h3>
+                    <p data-ar="تصميم wireframes، mockups، والنماذج التفاعلية" data-en="Designing wireframes, mockups, and interactive prototypes" data-ku="Dizayn kirina wireframes, mockups, û prototîpên têkilîdar">تصميم wireframes، mockups، والنماذج التفاعلية</p>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+            <div class="timeline-item reveal">
+                <div class="timeline-content">
+                    <span class="timeline-date" data-ar="الأسبوع 4-6" data-en="Week 4-6" data-ku="Hefteya 4-6">الأسبوع 4-6</span>
+                    <h3 data-ar="التطوير البرمجي" data-en="Development" data-ku="Pêşvebirin">التطوير البرمجي</h3>
+                    <p data-ar="برمجة الواجهة الأمامية والخلفية وربط APIs" data-en="Frontend and backend programming and API integration" data-ku="Pergaliya pêş û paş û yekbûna API">برمجة الواجهة الأمامية والخلفية وربط APIs</p>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+            <div class="timeline-item reveal">
+                <div class="timeline-content">
+                    <span class="timeline-date" data-ar="الأسبوع 7" data-en="Week 7" data-ku="Hefteya 7">الأسبوع 7</span>
+                    <h3 data-ar="الاختبار والجودة" data-en="Testing & QA" data-ku="Test & QA">الاختبار والجودة</h3>
+                    <p data-ar="اختبار شامل على جميع الأجهزة وإصلاح الأخطاء" data-en="Comprehensive testing on all devices and bug fixing" data-ku="Testa giştî li ser hemû cîhazan û çareserkirina çewtiyan">اختبار شامل على جميع الأجهزة وإصلاح الأخطاء</p>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+            <div class="timeline-item reveal">
+                <div class="timeline-content">
+                    <span class="timeline-date" data-ar="الأسبوع 8" data-en="Week 8" data-ku="Hefteya 8">الأسبوع 8</span>
+                    <h3 data-ar="الإطلاق والنشر" data-en="Launch & Deploy" data-ku="Weşandin & Bicihanîn">الإطلاق والنشر</h3>
+                    <p data-ar="نشر المشروع على الاستضافة وتهيئة النطاق" data-en="Deploying the project on hosting and domain configuration" data-ku="Bicihanîna projeyê li ser hosting û mîhengkirina domain">نشر المشروع على الاستضافة وتهيئة النطاق</p>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack -->
+    <section class="tech-section">
+        <div class="section-header reveal">
+            <h2 data-ar="التقنيات المستخدمة" data-en="Tech Stack" data-ku="Komkirina Teknolojiyê">التقنيات المستخدمة</h2>
+            <p data-ar="أحدث التقنيات لأفضل أداء" data-en="Latest technologies for best performance" data-ku="Teknolojiyên herî nû ji bo performansa herî baş">أحدث التقنيات لأفضل أداء</p>
+        </div>
+        <div class="tech-grid reveal">
+            <div class="tech-item"><i class="fab fa-react" style="color:#61DAFB"></i><span>React.js</span></div>
+            <div class="tech-item"><i class="fab fa-node-js" style="color:#339933"></i><span>Node.js</span></div>
+            <div class="tech-item"><i class="fab fa-js" style="color:#F7DF1E"></i><span>JavaScript</span></div>
+            <div class="tech-item"><i class="fab fa-html5" style="color:#E34F26"></i><span>HTML5</span></div>
+            <div class="tech-item"><i class="fab fa-css3-alt" style="color:#1572B6"></i><span>CSS3</span></div>
+            <div class="tech-item"><i class="fas fa-database" style="color:#47A248"></i><span>MongoDB</span></div>
+            <div class="tech-item"><i class="fab fa-git-alt" style="color:#F05032"></i><span>Git</span></div>
+            <div class="tech-item"><i class="fab fa-docker" style="color:#2496ED"></i><span>Docker</span></div>
+            <div class="tech-item"><i class="fab fa-php" style="color:#777BB4"></i><span>PHP</span></div>
+            <div class="tech-item"><i class="fas fa-server" style="color:#F29111"></i><span>SQL</span></div>
+            <div class="tech-item"><i class="fab fa-laravel" style="color:#FF2D20"></i><span>Laravel</span></div>
+        </div>
+    </section>
+    <!-- Tech Explanation Section -->
+    <section class="tech-explain-section">
+        <div class="section-header reveal">
+            <h2 data-ar="لماذا هذه التقنيات؟" data-en="Why These Technologies?" data-ku="Çima Van Teknolojiyan?">لماذا هذه التقنيات؟</h2>
+            <p data-ar="شرح مبسط للتقنيات المستخدمة ودور كل منها" data-en="Simple explanation of used technologies and each role" data-ku="Danasîna sade ya teknolojiyên bikar anîn û rola her yekê">شرح مبسط للتقنيات المستخدمة ودور كل منها</p>
+        </div>
+        <div class="tech-explain-grid">
+            <!-- PHP -->
+            <div class="tech-explain-card reveal">
+                <div class="tech-header">
+                    <div class="tech-icon" style="background: linear-gradient(135deg, #777BB4, #4F5B93);">
+                        <i class="fab fa-php"></i>
+                    </div>
+                    <div>
+                        <div class="tech-title">PHP</div>
+                        <div class="tech-subtitle" data-ar="لغة برمجة الويب" data-en="Web Programming Language" data-ku="Zimanê Pergaliya Web">لغة برمجة الويب</div>
+                    </div>
+                </div>
+                <p data-ar="PHP هي لغة برمجة مفتوحة المصدر مصممة خصيصاً لتطوير الويب. تُستخدم لبناء الواجهة الخلفية (Backend) للمواقع وتطبيقات الويب." 
+                   data-en="PHP is an open-source programming language designed specifically for web development. It is used to build the backend of websites and web applications."
+                   data-ku="PHP zimanekî pergaliya çavkaniya vekirî ye ku bi taybetî ji bo pêşvebirina web hatiye sêwirandin. Ji bo avakirina paşnavê malperan û sepanên web tê bikar anîn.">
+                    PHP هي لغة برمجة مفتوحة المصدر مصممة خصيصاً لتطوير الويب. تُستخدم لبناء الواجهة الخلفية (Backend) للمواقع وتطبيقات الويب.
+                </p>
+                <ul>
+                    <li data-ar="معالجة طلبات المستخدمين" data-en="Processing user requests" data-ku="Pêvajoykirina daxwazên bikarhêneran">معالجة طلبات المستخدمين</li>
+                    <li data-ar="إنشاء صفحات ديناميكية" data-en="Creating dynamic pages" data-ku="Avakirina rûpelên dînamîk">إنشاء صفحات ديناميكية</li>
+                    <li data-ar="التواصل مع قواعد البيانات" data-en="Communicating with databases" data-ku="Têkilî bi danegehan re">التواصل مع قواعد البيانات</li>
+                    <li data-ar="إدارة الجلسات والملفات" data-en="Managing sessions and files" data-ku="Rêvebirina danişîn û pelan">إدارة الجلسات والملفات</li>
+                </ul>
+            </div>
+
+            <!-- SQL -->
+            <div class="tech-explain-card reveal">
+                <div class="tech-header">
+                    <div class="tech-icon" style="background: linear-gradient(135deg, #F29111, #E67E22);">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <div>
+                        <div class="tech-title">SQL</div>
+                        <div class="tech-subtitle" data-ar="لغة قواعد البيانات" data-en="Database Language" data-ku="Zimanê Danegehê">لغة قواعد البيانات</div>
+                    </div>
+                </div>
+                <p data-ar="SQL (Structured Query Language) هي لغة موحدة للتعامل مع قواعد البيانات العلائقية. تُستخدم لتخزين البيانات واسترجاعها وتحديثها وحذفها." 
+                   data-en="SQL is a standardized language for dealing with relational databases. It is used to store, retrieve, update, and delete data."
+                   data-ku="SQL (Structured Query Language) zimanekî yekgirtî ye ji bo mijûlîna bi danegehên eleqedar. Ji bo tomar kirina, vegerandina, nûve kirina, û jêbirinê daneyan tê bikar anîn.">
+                    SQL (Structured Query Language) هي لغة موحدة للتعامل مع قواعد البيانات العلائقية. تُستخدم لتخزين البيانات واسترجاعها وتحديثها وحذفها.
+                </p>
+                <ul>
+                    <li data-ar="تخزين بيانات المستخدمين بأمان" data-en="Securely storing user data" data-ku="Bi ewlehî tomar kirina daneyên bikarhêneran">تخزين بيانات المستخدمين بأمان</li>
+                    <li data-ar="استعلامات سريعة وفعالة" data-en="Fast and efficient queries" data-ku="Pirsînên lezgîn û bandor">استعلامات سريعة وفعالة</li>
+                    <li data-ar="علاقات بين الجداول" data-en="Relationships between tables" data-ku="Pêwendiyên navbera tabloyên">علاقات بين الجداول</li>
+                    <li data-ar="نسخ احتياطي واستعادة" data-en="Backup and recovery" data-ku="Hilanîna ji bo paşde û vegerandin">نسخ احتياطي واستعادة</li>
+                </ul>
+            </div>
+
+            <!-- JavaScript -->
+            <div class="tech-explain-card reveal">
+                <div class="tech-header">
+                    <div class="tech-icon" style="background: linear-gradient(135deg, #F7DF1E, #E8C517);">
+                        <i class="fab fa-js" style="color: #000;"></i>
+                    </div>
+                    <div>
+                        <div class="tech-title">JavaScript</div>
+                        <div class="tech-subtitle" data-ar="لغة تفاعلية" data-en="Interactive Language" data-ku="Zimanê Têkilîdar">لغة تفاعلية</div>
+                    </div>
+                </div>
+                <p data-ar="JavaScript هي لغة برمجة تُشغل في متصفح المستخدم. تُضيف الحركة والتفاعل للمواقع مثل: الأزرار المتحركة، النوافذ المنبثقة، والتحقق من البيانات." 
+                   data-en="JavaScript is a programming language that runs in the user's browser. It adds motion and interactivity to websites like: animated buttons, pop-ups, and data validation."
+                   data-ku="JavaScript zimanekî pergaliyê ye ku di geroka bikarhêner de dixebite. Ji bo malperan tevger û têkiliyê lê zêde dike wekî: bişkojên anîmasyon, pop-up, û pejirandina daneyan.">
+                    JavaScript هي لغة برمجة تُشغل في متصفح المستخدم. تُضيف الحركة والتفاعل للمواقع مثل: الأزرار المتحركة، النوافذ المنبثقة، والتحقق من البيانات.
+                </p>
+                <ul>
+                    <li data-ar="تفاعلات المستخدم (Click, Scroll)" data-en="User interactions (Click, Scroll)" data-ku="Têkiliyên bikarhêner (Click, Scroll)">تفاعلات المستخدم (Click, Scroll)</li>
+                    <li data-ar="تحديث الصفحة بدون إعادة تحميل (AJAX)" data-en="Update page without reloading (AJAX)" data-ku="Nûve kirina rûpelê bê barkirin (AJAX)">تحديث الصفحة بدون إعادة تحميل (AJAX)</li>
+                    <li data-ar="رسوم متحركة وتأثيرات بصرية" data-en="Animations and visual effects" data-ku="Anîmasyon û bandorên dîtinî">رسوم متحركة وتأثيرات بصرية</li>
+                    <li data-ar="التحقق من صحة البيانات المدخلة" data-en="Validating input data" data-ku="Pejirandina daneyên têketî">التحقق من صحة البيانات المدخلة</li>
+                </ul>
+            </div>
+
+            <!-- Laravel -->
+            <div class="tech-explain-card reveal">
+                <div class="tech-header">
+                    <div class="tech-icon" style="background: linear-gradient(135deg, #FF2D20, #C41E14);">
+                        <i class="fab fa-laravel"></i>
+                    </div>
+                    <div>
+                        <div class="tech-title">Laravel</div>
+                        <div class="tech-subtitle" data-ar="إطار عمل PHP" data-en="PHP Framework" data-ku="Çarçoveya PHP">إطار عمل PHP</div>
+                    </div>
+                </div>
+                <p data-ar="Laravel هو إطار عمل (Framework) مبني على PHP. يُسهل ويُسرع بناء تطبيقات الويب بتوفير أدوات جاهزة مثل: نظام Routing، Authentication، وORM." 
+                   data-en="Laravel is a framework built on PHP. It makes building web applications faster and easier by providing ready-made tools like: Routing system, Authentication, and ORM."
+                   data-ku="Laravel çarçoveyek (Framework) ye ku li ser PHP hatiye avakirin. Avakirina sepanên web hêsantir û lewre dike bi peydakirina amûrên amade wekî: Sîstema Routing, Authentication, û ORM.">
+                    Laravel هو إطار عمل (Framework) مبني على PHP. يُسهل ويُسرع بناء تطبيقات الويب بتوفير أدوات جاهزة مثل: نظام Routing، Authentication، وORM.
+                </p>
+                <ul>
+                    <li data-ar="هيكلة منظمة MVC" data-en="Organized MVC structure" data-ku="Struktura rêkxistî MVC">هيكلة منظمة MVC</li>
+                    <li data-ar="نظام مصادقة جاهز (Login/Register)" data-en="Ready authentication system" data-ku="Sîstema rasthatina amade (Login/Register)">نظام مصادقة جاهز (Login/Register)</li>
+                    <li data-ar="Eloquent ORM للتعامل مع قاعدة البيانات" data-en="Eloquent ORM for database handling" data-ku="Eloquent ORM ji bo mijûlîna bi danegehê re">Eloquent ORM للتعامل مع قاعدة البيانات</li>
+                    <li data-ar="أمان مدمج ضد الهجمات" data-en="Built-in security against attacks" data-ku="Ewlekariya têketî li dijî êrîşan">أمان مدمج ضد الهجمات</li>
+                    <li data-ar="Blade Templates للواجهات" data-en="Blade Templates for interfaces" data-ku="Blade Templates ji bo rûyên">Blade Templates للواجهات</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Developer -->
+    <section class="about-section">
+        <div class="section-header reveal">
+            <h2 data-ar="عن المطور" data-en="About the Developer" data-ku="Derbarê Pêşvebîr de">عن المطور</h2>
+            <p data-ar="خبرة وإتقان في تطوير الويب" data-en="Experience and mastery in web development" data-ku="Tecrube û jêhatîbûn di pêşvebirina web de">خبرة وإتقان في تطوير الويب</p>
+        </div>
+        <div class="about-container reveal">
+            <div class="about-image">
+                <div class="about-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face" alt="Developer">
+                </div>
+                <div class="experience-badge">
+                    <span data-ar="6+ سنوات" data-en="6+ Years" data-ku="6+ Sal">6+ سنوات</span>
+                </div>
+            </div>
+            <div class="about-content">
+                <h2 data-ar="مطور Full Stack" data-en="Full Stack Developer" data-ku="Pêşvebîrê Full Stack">مطور Full Stack</h2>
+                <div class="role" data-ar="خبرة 6 سنوات في تطوير الويب" data-en="6 Years of Web Development Experience" data-ku="6 Sal Tecrube di Pêşvebirina Web de">خبرة 6 سنوات في تطوير الويب</div>
+                <p data-ar="مطور ويب متكامل بخبرة 6 سنوات في بناء تطبيقات ويب حديثة وقابلة للتطوير. متخصص في React، Node.js، Laravel، PHP، وتصميم قواعد البيانات. أؤمن بأن التفاصيل الصغيرة تصنع الفرق الكبير، وأعمل دائماً على تقديم حلول مبتكرة تتجاوز توقعات العملاء."
+                   data-en="A full-stack web developer with 6 years of experience building modern and scalable web applications. Specialized in React, Node.js, Laravel, PHP, and database design. I believe small details make a big difference, and always work on delivering innovative solutions that exceed client expectations."
+                   data-ku="Pêşvebîrekî web-a têkûz bi tecrubeya 6 salan di avakirina sepanên web-a nûjen û berfireh de. Pisporê React, Node.js, Laravel, PHP, û sêwirana danegehan. Ez bawer dikim ku hûrguliyên biçûk cûdahiya mezin dikin, û her tim dixebitin ji bo pêşkêşkirina çareseriyên nûjen ku bihayên mişteriyan derbas dikin.">
+                    مطور ويب متكامل بخبرة 6 سنوات في بناء تطبيقات ويب حديثة وقابلة للتطوير. متخصص في React، Node.js، Laravel، PHP، وتصميم قواعد البيانات. أؤمن بأن التفاصيل الصغيرة تصنع الفرق الكبير، وأعمل دائماً على تقديم حلول مبتكرة تتجاوز توقعات العملاء.
+                </p>
+                <div class="skills-list">
+                    <span class="skill-tag">React.js</span>
+                    <span class="skill-tag">Node.js</span>
+                    <span class="skill-tag">Laravel</span>
+                    <span class="skill-tag">PHP</span>
+                    <span class="skill-tag">SQL</span>
+                    <span class="skill-tag">JavaScript</span>
+                    <span class="skill-tag">TypeScript</span>
+                    <span class="skill-tag">MongoDB</span>
+                    <span class="skill-tag">PostgreSQL</span>
+                    <span class="skill-tag">AWS</span>
+                    <span class="skill-tag">Docker</span>
+                    <span class="skill-tag">GraphQL</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-box reveal">
+            <h2 data-ar="هل أنت مستعد لبدء مشروعك؟" data-en="Ready to Start Your Project?" data-ku="Tu Amade yî ji bo Destpêkirina Projeya xwe?">هل أنت مستعد لبدء مشروعك؟</h2>
+            <p data-ar="دعنا نناقش فكرتك ونحولها إلى واقع رقمي ناجح" data-en="Let's discuss your idea and turn it into a successful digital reality" data-ku="Ka em bifikra te nîqaş bikin û wê bikin rastiya dîjîtal a serkeftî">دعنا نناقش فكرتك ونحولها إلى واقع رقمي ناجح</p>
+            <div class="cta-buttons">
+                <a href="https://t.me/963986255967" target="_blank" class="btn btn-primary">
+                    <i class="fab fa-telegram"></i>
+                    <span data-ar="تواصل عبر تلجرام" data-en="Contact on Telegram" data-ku="Têkilî bi Telegram re">تواصل عبر تلجرام</span>
+                </a>
+                <a href="https://wa.me/963986255967" target="_blank" class="btn btn-secondary">
+                    <i class="fab fa-whatsapp"></i>
+                    <span data-ar="تواصل عبر واتساب" data-en="Contact on WhatsApp" data-ku="Têkilî bi WhatsApp re">تواصل عبر واتساب</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-logo" data-ar="مشروعي" data-en="MyProject" data-ku="Projeya Min">مشروعي</div>
+        <p data-ar="جميع الحقوق محفوظة © 2026" data-en="All Rights Reserved © 2026" data-ku="Hemû Maf Parastin © 2026">جميع الحقوق محفوظة © 2026</p>
+        <div class="social-links">
+            <a href="https://linkedin.com/in/your-profile" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://twitter.com/your-handle" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://instagram.com/your-handle" target="_blank"><i class="fab fa-instagram"></i></a>
+        </div>
+    </footer>
+
+    <script>
+        // Theme Toggle
+        let isDark = true;
+        function toggleTheme() {
+            isDark = !isDark;
+            document.body.setAttribute('data-theme', isDark ? 'dark' : 'light');
+            document.getElementById('themeBtn').innerHTML = isDark ? 
+                '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
+        }
+
+        // Language Toggle - 3 Languages
+        let currentLang = 'ar';
+
+        function setLanguage(lang) {
+            currentLang = lang;
+
+            // Update document direction
+            if (lang === 'en') {
+                document.documentElement.lang = 'en';
+                document.documentElement.dir = 'ltr';
+            } else if (lang === 'ar') {
+                document.documentElement.lang = 'ar';
+                document.documentElement.dir = 'rtl';
+            } else if (lang === 'ku') {
+                document.documentElement.lang = 'ku';
+                document.documentElement.dir = 'rtl';
+            }
+
+            // Update active button
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById('lang' + lang.charAt(0).toUpperCase() + lang.slice(1)).classList.add('active');
+
+            // Update all text elements
+            document.querySelectorAll('[data-ar][data-en][data-ku]').forEach(el => {
+                el.textContent = el.getAttribute('data-' + lang);
+            });
+
+            // Update carousel direction
+            updateCarousel();
+        }
+
+        // Carousel
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+        const totalSlides = slides.length;
+        const track = document.getElementById('carouselTrack');
+        const dotsContainer = document.getElementById('carouselDots');
+
+        // Create dots
+        slides.forEach((_, index) => {
+            const dot = document.createElement('div');
+            dot.className = 'dot' + (index === 0 ? ' active' : '');
+            dot.onclick = () => goToSlide(index);
+            dotsContainer.appendChild(dot);
+        });
+
+        function updateCarousel() {
+            const direction = (currentLang === 'en') ? -1 : 1;
+            track.style.transform = `translateX(${currentSlide * direction * 100}%)`;
+            document.querySelectorAll('.dot').forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateCarousel();
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            updateCarousel();
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateCarousel();
+        }
+
+        // Auto-play carousel
+        setInterval(nextSlide, 5000);
+
+        // Scroll Animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Initialize
+        setLanguage('ar');
+    </script>
+</body>
+</html>
